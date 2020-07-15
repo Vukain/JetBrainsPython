@@ -2,6 +2,10 @@ import math
 import sys
 import argparse
 
+# A basic credit calculator which main purpose is to work from command line and take several parameters
+# It also works when no parameters are given and when launched from main file
+# Calculates - count of months, annuity monthly payment, differentiated payments, credit principal
+
 
 def arg_parser():
 
@@ -77,7 +81,9 @@ def calc_principal():
     print(f"\nOverpayment = {summed_payments - _principal}")
 
 
+# launching from cmd with no parameters of from within a file
 if len(sys.argv) == 1 or "__name__" == "__main__":
+    
     typ = input('''
     What do you want to calculate?
     type "n" - for count of months,
@@ -106,6 +112,7 @@ if len(sys.argv) == 1 or "__name__" == "__main__":
         calc_principal()
     else:
         print("Incorrect Type")
+# launching with parameters
 else:
     args = arg_parser()
 
