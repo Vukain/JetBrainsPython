@@ -19,7 +19,7 @@ def arg_parser():
 def calc_periods():
 
     _periods = math.ceil(math.log(monthly_payment
-                                 / (monthly_payment - nominal_interest * principal), 1 + nominal_interest))
+                                  / (monthly_payment - nominal_interest * principal), 1 + nominal_interest))
     years = _periods // 12
     months = _periods % 12
 
@@ -40,7 +40,7 @@ def calc_periods():
 def calc_annuity_payment():
 
     _monthly_payment = principal * ((nominal_interest * math.pow(1 + nominal_interest, periods))
-                                   / (math.pow(1 + nominal_interest, periods) - 1))
+                                    / (math.pow(1 + nominal_interest, periods) - 1))
 
     summed_payments = periods * _monthly_payment
 
@@ -67,7 +67,7 @@ def calc_differ_payment():
 def calc_principal():
 
     _principal = monthly_payment / ((nominal_interest * math.pow(1 + nominal_interest, periods))
-                                   / (math.pow(1 + nominal_interest, periods) - 1))
+                                    / (math.pow(1 + nominal_interest, periods) - 1))
     summed_payments = periods * monthly_payment
 
     print(f"Your credit principal = {_principal}!")
@@ -105,9 +105,6 @@ if len(sys.argv) == 1 and False:
     else:
         print("Incorrect Type")
 
-elif len(sys.argv) != 5:
-
-
 else:
     args = arg_parser()
 
@@ -140,4 +137,3 @@ else:
 
     else:
         print("Incorrect parameters")
-
