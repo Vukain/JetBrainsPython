@@ -29,7 +29,7 @@ def calc_periods():
         months = _periods % 12
 
         plural_year = "years" if years > 1 else "year"
-        plural_month = "months" if years > 1 else "month"
+        plural_month = "months" if months > 1 else "month"
         summed_payments = _periods * monthly_payment
 
         if years and months:
