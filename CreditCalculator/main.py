@@ -111,7 +111,7 @@ if len(sys.argv) == 1 or "__name__" == "__main__":
         periods = int(input("Enter count of periods: "))
         calc_principal()
     else:
-        print("Incorrect Type")
+        print("Incorrect input.")
 # launching with parameters
 else:
     args = arg_parser()
