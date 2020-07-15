@@ -82,7 +82,7 @@ def calc_principal():
 
 
 # launching from cmd with no parameters of from within a file
-if len(sys.argv) == 1 or "__name__" == "__main__":
+if len(sys.argv) == 1 or __name__ == "__main__":
     
     typ = input('''
     What do you want to calculate?
