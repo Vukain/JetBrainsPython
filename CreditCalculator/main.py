@@ -18,8 +18,7 @@ def arg_parser():
 
 def calc_periods():
 
-    _periods = math.ceil(math.log(monthly_payment
-                                  / (monthly_payment - nominal_interest * principal), 1 + nominal_interest))
+    _periods = math.ceil(math.log(monthly_payment / (monthly_payment - nominal_interest * principal), 1 + nominal_interest))
     years = _periods // 12
     months = _periods % 12
 
@@ -39,12 +38,13 @@ def calc_periods():
 
 def calc_annuity_payment():
 
-    _monthly_payment = principal * ((nominal_interest * math.pow(1 + nominal_interest, periods))
-                                    / (math.pow(1 + nominal_interest, periods) - 1))
+    _monthly_payment = math.ceil(principal * ((nominal_interest * math.pow(1 + nominal_interest, periods))
+                                    / (math.pow(1 + nominal_interest, periods) - 1)))
 
     summed_payments = periods * _monthly_payment
 
     print(f"Your annuity payment = {math.ceil(_monthly_payment)}!")
+
     print(f"\nOverpayment = {summed_payments - principal}")
 
 
@@ -65,7 +65,6 @@ def calc_differ_payment():
 
 
 def calc_principal():
-
     _principal = monthly_payment / ((nominal_interest * math.pow(1 + nominal_interest, periods))
                                     / (math.pow(1 + nominal_interest, periods) - 1))
     summed_payments = periods * monthly_payment
@@ -74,14 +73,14 @@ def calc_principal():
     print(f"\nOverpayment = {summed_payments - _principal}")
 
 
-if len(sys.argv) == 1 and False:
-    # For non cmd operations - start without parameters
+def no_param():
+
     typ = input('''
-    What do you want to calculate?
-    type "n" - for count of months,
-    type "a" - for annuity monthly payment,
-    type "d" - for differentiated payments,
-    type "p" - for credit principal: ''')
+        What do you want to calculate?
+        type "n" - for count of months,
+        type "a" - for annuity monthly payment,
+        type "d" - for differentiated payments,
+        type "p" - for credit principal: ''')
 
     interest = float(input("Enter credit interest: "))
     nominal_interest = (interest / (12 * 100))
@@ -105,6 +104,10 @@ if len(sys.argv) == 1 and False:
     else:
         print("Incorrect Type")
 
+
+if len(sys.argv) == 1 and False:
+    no_param()
+
 else:
     args = arg_parser()
 
@@ -124,11 +127,11 @@ else:
 
         elif args.type == "annuity" and all([args.payment, args.principal]):
             principal = args.principal
-            payment = args.periods
+            monthly_payment = args.payment
             calc_periods()
 
         elif args.type == "annuity" and all([args.payment, args.periods]):
-            payment = args.payment
+            monthly_payment = args.payment
             periods = args.periods
             calc_principal()
 
@@ -137,3 +140,7 @@ else:
 
     else:
         print("Incorrect parameters")
+
+
+if "__name__" == "__main__":
+    no_param()
