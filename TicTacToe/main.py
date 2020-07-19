@@ -10,7 +10,6 @@ threes = [[table[0], table[1], table[2]], [table[3], table[4], table[5]], [table
             [table[0], table[3], table[6]], [table[1], table[4], table[7]], [table[2], table[5], table[8]],
             [table[0], table[4], table[8]], [table[2], table[4], table[6]]]
 players = [["X", False], ["O", False]]
-
 difference = abs(table.count("X") - table.count("O"))
 
 for player in players:
