@@ -1,2 +1,7 @@
 # JetBrainsPython
 Projects from JetBrains Academy
+
+# Credit Calculator
+A basic credit calculator which main purpose is to work from command line and take several parameters.
+It also works when no parameters are given and when launched from the main file.
+Calculates - count of months, annuity monthly payment, differentiated payments, credit principal.
