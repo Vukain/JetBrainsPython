@@ -1,34 +1,42 @@
 # write your code here
-table = input('Enter cells: ').replace("_", " ").split()
+table = list(input('Enter cells: ').replace("_", " "))
 
 def table_printer():
     print(f"""---------
-    | {table[0]} {table[1]} {table[2]} |
-    | {table[3]} {table[4]} {table[5]} |
-    | {table[6]} {table[7]} {table[8]} |
-    ---------""")
+| {table[0]} {table[1]} {table[2]} |
+| {table[3]} {table[4]} {table[5]} |
+| {table[6]} {table[7]} {table[8]} |
+---------""")
     
 def pos_enter(table):
     while True:
         coordinate = 0
         numbs = input("Enter the coordinates: ").split()
+        
         if not numbs[0].isnumeric() or not numbs[1].isnumeric():
             print("You should enter numbers!")
             continue
-            
-        for numb in numbs:
-            if numb not in "123":
-                print("Coordinates should be from 1 to 3!")
-                continue
+        elif numbs[0] not in "123" or numbs[1] not in "123":
+            print("Coordinates should be from 1 to 3!")
+            continue
         else:
             if numbs[1] == "1":
                 coordinate += 6
             elif numbs[1] == "2":
                 coordinate += 3
-            coordinate += 
+            coordinate += int(numbs[0]) - 1
+        
+        if table[coordinate] == " ":
+            table[coordinate] = "X"
+            break
+        else:
+            print("This cell is occupied! Choose another one!")
+            continue
             
         
     
+table_printer()
+pos_enter(table)
 table_printer()
 
 threes = [[table[0], table[1], table[2]], [table[3], table[4], table[5]], [table[6], table[7], table[8]],
