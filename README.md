@@ -1,4 +1,4 @@
-# Jet Brains Python Academy
+# JetBrains Python Academy
 Projects from JetBrains/Hyperskill Academy
 
 # Easy
