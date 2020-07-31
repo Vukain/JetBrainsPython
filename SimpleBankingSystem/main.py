@@ -21,6 +21,7 @@ class Banking:
         Banking.card_num += 1
         cur.execute(f'INSERT INTO card(id, number, pin, balance) VALUES ({Banking.card_num}, {self.number}, {self.pin}, {self.balance})')
         conn.commit()
+        
     @staticmethod
     def generator(n):
         return "".join([str(random.randint(0, 9)) for i in range(n)])
@@ -91,11 +92,11 @@ Your card PIN:
                             print('Transfer')
                             print(cur.execute('SELECT number FROM card').fetchall())
                             tran_num = input('Enter card number: \n')
+                            
                             if tran_num == tran_num[:-1] + Banking.luhn(tran_num[:-1]):
 
                                 if (tran_num,) not in cur.execute('SELECT number FROM card').fetchall():
                                     print('Such a card does not exist.')
-
                                 elif tran_num == crd:
                                     print("You can't transfer money to the same account!")
                                 else:
@@ -110,8 +111,6 @@ Your card PIN:
                                         cur.execute(
                                             f'UPDATE card SET balance = balance + {tran_money} WHERE number = {tran_num}')
                                         conn.commit()
-
-
                             else:
                                 print('Probably you made mistake in the card number. Please try again!')
 
