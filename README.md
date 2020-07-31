@@ -16,6 +16,7 @@ Tic Tac Toe
 A game of tic tac toe, whoever scores 3 same signs in a row, wins.
 
 ---
+
 Hangman
 
 Try to guess a word... win or be hanged.
@@ -23,4 +24,17 @@ Try to guess a word... win or be hanged.
 # Medium
 
 Rock Paper Scissors
+
+---
+
+Coffee Machine
+
+---
+
+Simple Banking System
+
+---
+
+Numeric Matrix Processor
+
 
