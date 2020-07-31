@@ -1,4 +1,11 @@
 import random
+import sqlite3
+
+
+conn = sqlite3.connect('card.s3db')
+cur = conn.cursor()
+
+cur.execute('CREATE TABLE IF NOT EXISTS card (id INTEGER, number TEXT, pin TEXT, balance INTEGER DEFAULT 0);')
 
 
 class Banking:
@@ -9,9 +16,10 @@ class Banking:
     def __init__(self):
         self.number = Banking.create_card()
         self.pin = Banking.generator(4)
-        self.ballance = 0
+        self.balance = 0
         Banking.cards[self.number] = self
         Banking.card_num += 1
+        cur.execute(f'INSERT INTO card(id, number, pin, balance) VALUES ({Banking.card_num}, {self.number}, {self.pin}, {self.balance})')
 
     @staticmethod
     def generator(n):
@@ -66,7 +74,7 @@ Your card PIN:
 >1""")
                         cmd = input()
                         if cmd == "1":
-                            print(f"Balance: {cls.cards[crd].ballance}")
+                            print(f"Balance: {cls.cards[crd].balance}")
                         elif cmd == "2":
                             break
                         elif cmd == "0":
@@ -76,3 +84,4 @@ Your card PIN:
 
 
 Banking.menu()
+conn.commit()
