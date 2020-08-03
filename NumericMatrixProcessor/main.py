@@ -58,28 +58,43 @@ class Matrix:
                     print(round(number, 2), end=" ")
                 print()
                 
-    def determinant(self, mtx):
-        determinant = 0
-        if len(mtx.matrix[0]) == 2:
+    @staticmethod        
+    def determinant(mtx):
+        if len(mtx) == 1:
+            return mtx[0][0]
+        elif len(mtx) == 2:
             det = mtx[0][0] * mtx[1][1] - mtx[1][0] * mtx[0][1]
+            return det
+        # else:
+        #     eva = "+"
+        #     recur = ""
+        #     for i, e in enumerate(mtx):
+        #         if i != 0:
+        #           recur += eva
+        #         recur += f"mtx[0][{i}] * Matrix.determinant([[e for i, e in enumerate(matx) if i != {i}] for matx in mtx[1:]])"
+        #         if eva == '-':
+        #             eva = "+"
+        #         else:
+        #             eva = "-"
+        #     return eval(recur)       
         else:
-            eva = "-"
-            recur = ""
+            # print(mtx)
+            recur = 0
             for i, e in enumerate(mtx):
-                recur += mtx[0][i] * determinant([e for e in i, e in enumerate(mtx[1:] if i != 0)])
-                recur += eva
-                if eva == '-':
-                    eva = "+"
+                rex = mtx[0][i] * Matrix.determinant([[el for ind, el in enumerate(matx) if ind != i] for matx in mtx[1:]])
+                # print(rex)
+                if i % 2 == 0:
+                    recur += rex
                 else:
-                    eva = "-"
-            return eval(recur)
+                    recur -= rex
+            return recur
             
         
 
 
 def menu():
     while True:
-        print("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n4. Transpose matrix\n0. Exit")
+        print("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n4. Transpose matrix\n5. Calculate a determinant\n0. Exit")
         choice = input()
         if choice == "1":
             print("Enter size of first matrix: ")
@@ -116,7 +131,6 @@ def menu():
             print("Enter second matrix: ")
             matrix_b.create()
             matrix_b.transpose()
-            # print(matrix_b.matrix)
             print("The result is:")
             matrix_a.multiply_matrices(matrix_b)
 
@@ -143,8 +157,8 @@ def menu():
             matrix_a = Matrix()
             print("Enter matrix: ")
             matrix_a.create()
-            
-            matrix_a.determinant(matrix_a.matrix)
+            print("The result is:")
+            print(matrix_a.determinant(matrix_a.matrix))
         else:
             break
 
