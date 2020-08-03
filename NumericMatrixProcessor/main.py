@@ -24,7 +24,7 @@ class Matrix:
         result = [[self.matrix[i][j] * number for j in range(len(self.matrix[0]))] for i in range(len(self.matrix))]
         for row in result:
             for number in row:
-                print(round(float(number), 4), end=" ")
+                print(round(number, 4), end=" ")
             print()
 
     def transpose(self):
