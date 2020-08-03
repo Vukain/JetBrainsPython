@@ -57,6 +57,24 @@ class Matrix:
                 for number in row:
                     print(round(number, 2), end=" ")
                 print()
+                
+    def determinant(self, mtx):
+        determinant = 0
+        if len(mtx.matrix[0]) == 2:
+            det = mtx[0][0] * mtx[1][1] - mtx[1][0] * mtx[0][1]
+        else:
+            eva = "-"
+            recur = ""
+            for i, e in enumerate(mtx):
+                recur += mtx[0][i] * determinant([e for e in i, e in enumerate(mtx[1:] if i != 0)])
+                recur += eva
+                if eva == '-':
+                    eva = "+"
+                else:
+                    eva = "-"
+            return eval(recur)
+            
+        
 
 
 def menu():
@@ -119,6 +137,14 @@ def menu():
                 matrix_a.transpose_horizontal()
 
             matrix_a.printer()
+            
+        elif choice == "5":
+            print("Enter size of matrix: ")
+            matrix_a = Matrix()
+            print("Enter matrix: ")
+            matrix_a.create()
+            
+            matrix_a.determinant(matrix_a.matrix)
         else:
             break
 
