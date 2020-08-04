@@ -33,13 +33,13 @@ A game of rock, paper, scissors, lizard, spock..
 Coffee Machine
 
 A coffe machine simulation in which you can order different types of coffee, 
-refill the stock or take thr money... if you're the owner obviously.
+refill the stock or take the money... if you're the owner obviously.
  
 ---
 
 Simple Banking System
 
-A banking system which lets you create a credit card and manage it (check money, transfer funds, delete card). 
+A banking system which allows you to create a credit card and manage it (check money, deposit or transfer funds, delete card). 
 Data is stored in SQLite 3 database.
  
 ---
