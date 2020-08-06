@@ -25,16 +25,33 @@ Try to guess a word... win or be hanged.
 
 Rock Paper Scissors
 
+A game of rock, paper, scissors, lizard, spock.. 
+ spock?! Well, you can enter as many options as you want! 
+
 ---
 
 Coffee Machine
 
+A coffe machine simulation in which you can order different types of coffee, 
+refill the stock or take the money... if you're the owner obviously.
+ 
 ---
 
 Simple Banking System
 
+A banking system which allows you to create a credit card and manage it (check money, deposit or transfer funds, delete card). 
+Data is stored in SQLite 3 database.
+ 
 ---
 
 Numeric Matrix Processor
+
+A calculator in which you can operate on matrices. 
+Options: scalar multiplication, matrix addition, matrix multiplication, transposing, calculating determinant, creating an inverse matrix. 
+Nnnnnice.
+
+# Hard
+
+Text Based Browser
 
 
