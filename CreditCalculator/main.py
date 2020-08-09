@@ -2,11 +2,10 @@ import math
 import sys
 import argparse
 
+
 # A basic credit calculator which main purpose is to work from command line and take several parameters
 # It also works when no parameters are given and when launched from main file
 # Calculates - count of months, annuity monthly payment, differentiated payments, credit principal
-
-
 def arg_parser():
 
     parser = argparse.ArgumentParser(description="Credit Calculator Project")
