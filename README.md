@@ -54,4 +54,10 @@ Nnnnnice.
 
 Text Based Browser
 
+A text based browser which displays scraped page content using requests, BeautifulSoup and colorama.
+ 
+---
 
+To-Do List
+
+A To-Do list that uses SQLAlchemy combined with SQLite, to store and manage the entered tasks.
