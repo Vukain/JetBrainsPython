@@ -3,8 +3,8 @@ import os
 import requests
 from bs4 import BeautifulSoup
 from colorama import Fore, Back, Style, init
-init()
 
+init()
 
 if len(sys.argv) > 1:
     path = sys.argv[1]
@@ -23,16 +23,11 @@ def url_check(url):
 
 def get_content(page):
     soup = BeautifulSoup(page.content, 'html.parser')
-    p1 = soup.find_all('p')
-    p2 = soup.find_all('h')
-    p3 = soup.find_all('ul')
-    p4 = soup.find_all('ol')
-    p5 = soup.find_all('li')
-    a = soup.find_all('a')
-    blue_a = [Fore.BLUE + link.text + Style.RESET_ALL for link in a]
-    site = [p1, p2, p3, p4, p5]
-    site_content = [el.text for element in site for el in element]
-    site_content.extend(blue_a)
+    cont = ['p', 'h', 'ul', 'ol', 'li', 'a']
+
+    content = soup.find_all(cont)
+    site_content = [Fore.BLUE + link.text + Style.RESET_ALL if link.name == 'a' else link.text for link in content]
+
     return site_content
 
 
