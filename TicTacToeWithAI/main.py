@@ -45,13 +45,13 @@ class Computer:
                     choice = random.randrange(0, 9)
                 table[choice] = self.sign
             print('Making move level "medium" -', self.sign)
-        else:
+        else:  # hard mode faulty
             if len(self.empty_indices(table)) == 9 or True: # making first move random to decrease computations
                 choice = random.randrange(0, 9)
                 while table[choice] != " ":
                     choice = random.randrange(0, 9)
             else:
-                choice = self.minimax(table, game.players)
+                choice = self.minimax(table, game.players, self.sign)[1]
 
             table[choice] = self.sign
 
@@ -61,7 +61,7 @@ class Computer:
     def empty_indices(board):
         return [i for i, e in enumerate(board) if e == " "]
 
-    def minimax(self, board, players):
+    def minimax(self, board, players, side):
 
         boardie = board[:]
         empty_spots = self.empty_indices(boardie)
@@ -69,20 +69,54 @@ class Computer:
         enemy = players[1 if self.idx == 0 else 0]
 
         if Game.win_checker(boardie, enemy):
-            return -10
+            return -10, -1
         elif Game.win_checker(boardie, me):
-            return 10
+            return 10, -1
         elif len(empty_spots) == 0:
-            return 0
+            return 0, -1
 
-        moves = []
+        next_side = get_opponent_side(side)
 
-        for i, e in enumerate(empty_spots):
-            move = dict()
-            move["index"] = boardie[empty_spots[i]]
-            boardie[empty_spots[i]] = self.sign
+        moves = dict()
+
+        for i in range(9):
+            if boardie[i] == " ":
+
+                bords = boardie[:]
+                bords[i] = side
+                score, index = self.minimax(bords, game.players, next_side)
+                moves[i] = score
+
+            best_index = -1
+            if me.sign == side:
+                best_score = -100
+                for index, score in moves.items():
+                    if score > best_score:
+                        best_score = score
+                        best_index = index
+            else:
+                best_score = 100
+                for index, score in moves.items():
+                    if score < best_score:
+                        best_score = score
+                        best_index = index
+
+            return best_score, best_index
+
+        # moves = []
+        #
+        # for i, e in enumerate(empty_spots):
+        #     move = dict()
+        #     move["index"] = boardie[empty_spots[i]]
+        #     boardie[empty_spots[i]] = self.sign
 
 
+def get_opponent_side(side):
+    if side == 'X':
+        return 'O'
+    if side == 'O':
+        return 'X'
+    return None
 
 
 class Player:
@@ -123,6 +157,7 @@ class Game:
         self.table = [" " for i in range(9)]
         self.players = []
         self.playing = True
+        self.state = ""
 
     def table_printer(self):
         print(f"""---------
@@ -171,10 +206,12 @@ class Game:
 
                 if player.win:
                     print(f"{player.sign} wins")
+                    self.state = f"{player.sign}"
                     self.playing = False
                     break
                 elif " " not in self.table:
                     print("Draw")
+                    self.state = "Draw"
                     self.playing = False
                     break
 
