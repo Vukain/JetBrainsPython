@@ -8,7 +8,6 @@ class Computer:
         self.difficulty = diff
         self.win = False
         self.idx = idx
-        # self.enemy = enemy
 
     def play(self, table):
         if self.difficulty == 'easy':
@@ -45,14 +44,13 @@ class Computer:
                     choice = random.randrange(0, 9)
                 table[choice] = self.sign
             print('Making move level "medium" -', self.sign)
-        else:  # hard mode faulty
-            if len(self.empty_indices(table)) == 9 or True: # making first move random to decrease computations
+        else:
+            if len(self.empty_indices(table)) == 9:
                 choice = random.randrange(0, 9)
                 while table[choice] != " ":
                     choice = random.randrange(0, 9)
             else:
-                choice = self.minimax(table, game.players, self.sign)[1]
-
+                choice = self.minimax(table, self.sign, self.sign)[1]
             table[choice] = self.sign
 
             print('Making move level "hard" -', self.sign)
@@ -61,21 +59,19 @@ class Computer:
     def empty_indices(board):
         return [i for i, e in enumerate(board) if e == " "]
 
-    def minimax(self, board, players, side):
-
-        boardie = board[:]
-        empty_spots = self.empty_indices(boardie)
-        me = players[self.idx]
-        enemy = players[1 if self.idx == 0 else 0]
+    @staticmethod
+    def minimax(boardie, ai_sign, next_move):
+        empty_spots = Computer.empty_indices(boardie)
+        enemy = get_opponent_side(ai_sign)
 
         if Game.win_checker(boardie, enemy):
             return -10, -1
-        elif Game.win_checker(boardie, me):
+        elif Game.win_checker(boardie, ai_sign):
             return 10, -1
         elif len(empty_spots) == 0:
             return 0, -1
 
-        next_side = get_opponent_side(side)
+        next_side = get_opponent_side(next_move)
 
         moves = dict()
 
@@ -83,32 +79,26 @@ class Computer:
             if boardie[i] == " ":
 
                 bords = boardie[:]
-                bords[i] = side
-                score, index = self.minimax(bords, game.players, next_side)
+                bords[i] = next_move
+                score, index = Computer.minimax(bords, ai_sign, next_side)
                 moves[i] = score
+                # print(moves)
 
-            best_index = -1
-            if me.sign == side:
-                best_score = -100
-                for index, score in moves.items():
-                    if score > best_score:
-                        best_score = score
-                        best_index = index
-            else:
-                best_score = 100
-                for index, score in moves.items():
-                    if score < best_score:
-                        best_score = score
-                        best_index = index
+        best_index = -1
+        if ai_sign == next_move:
+            best_score = -100
+            for index, score in moves.items():
+                if score > best_score:
+                    best_score = score
+                    best_index = index
+        else:
+            best_score = 100
+            for index, score in moves.items():
+                if score < best_score:
+                    best_score = score
+                    best_index = index
 
-            return best_score, best_index
-
-        # moves = []
-        #
-        # for i, e in enumerate(empty_spots):
-        #     move = dict()
-        #     move["index"] = boardie[empty_spots[i]]
-        #     boardie[empty_spots[i]] = self.sign
+        return best_score, best_index
 
 
 def get_opponent_side(side):
@@ -167,19 +157,21 @@ class Game:
 ---------""")
 
     @staticmethod
-    def win_checker(table, player):
+    def win_checker(table, sign):
         threes = [[table[0], table[1], table[2]], [table[3], table[4], table[5]],
                   [table[6], table[7], table[8]], [table[0], table[3], table[6]],
                   [table[1], table[4], table[7]], [table[2], table[5], table[8]],
                   [table[0], table[4], table[8]], [table[2], table[4], table[6]]]
         for three in threes:
-            if player.sign == three[0] and player.sign == three[1] and player.sign == three[2]:
-                player.win = True
+            if sign == three[0] and sign == three[1] and sign == three[2]:
                 return True
 
     def game_starter(self):
 
         while True:
+            print("To start a game enter 'start player_type player_type'.")
+            print("Player types - user, easy, medium, hard.")
+            print("To quit enter 'exit'.")
             choice = input("Input command: ")
             if choice == "exit":
                 self.playing = False
@@ -202,9 +194,8 @@ class Game:
             for player in self.players:
                 player.play(self.table)
                 self.table_printer()
-                self.win_checker(self.table, player)
 
-                if player.win:
+                if self.win_checker(self.table, player.sign):
                     print(f"{player.sign} wins")
                     self.state = f"{player.sign}"
                     self.playing = False
