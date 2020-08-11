@@ -3,10 +3,12 @@ import random
 
 class Computer:
 
-    def __init__(self, sign, diff='easy'):
+    def __init__(self, sign, diff, idx):
         self.sign = sign
         self.difficulty = diff
         self.win = False
+        self.idx = idx
+        # self.enemy = enemy
 
     def play(self, table):
         if self.difficulty == 'easy':
@@ -16,7 +18,7 @@ class Computer:
                 choice = random.randrange(0, 9)
 
             table[choice] = self.sign
-            print('Making move level "easy"')
+            print('Making move level "easy" -', self.sign)
         elif self.difficulty == 'medium':
             threes = [[table[0], table[1], table[2]], [table[3], table[4], table[5]],
                       [table[6], table[7], table[8]], [table[0], table[3], table[6]],
@@ -42,7 +44,45 @@ class Computer:
                 while table[choice] != " ":
                     choice = random.randrange(0, 9)
                 table[choice] = self.sign
-            print('Making move level "medium"')
+            print('Making move level "medium" -', self.sign)
+        else:
+            if len(self.empty_indices(table)) == 9 or True: # making first move random to decrease computations
+                choice = random.randrange(0, 9)
+                while table[choice] != " ":
+                    choice = random.randrange(0, 9)
+            else:
+                choice = self.minimax(table, game.players)
+
+            table[choice] = self.sign
+
+            print('Making move level "hard" -', self.sign)
+
+    @staticmethod
+    def empty_indices(board):
+        return [i for i, e in enumerate(board) if e == " "]
+
+    def minimax(self, board, players):
+
+        boardie = board[:]
+        empty_spots = self.empty_indices(boardie)
+        me = players[self.idx]
+        enemy = players[1 if self.idx == 0 else 0]
+
+        if Game.win_checker(boardie, enemy):
+            return -10
+        elif Game.win_checker(boardie, me):
+            return 10
+        elif len(empty_spots) == 0:
+            return 0
+
+        moves = []
+
+        for i, e in enumerate(empty_spots):
+            move = dict()
+            move["index"] = boardie[empty_spots[i]]
+            boardie[empty_spots[i]] = self.sign
+
+
 
 
 class Player:
@@ -91,19 +131,16 @@ class Game:
 | {self.table[6]} {self.table[7]} {self.table[8]} |
 ---------""")
 
-    def win_checker(self):
-        threes = [[self.table[0], self.table[1], self.table[2]], [self.table[3], self.table[4], self.table[5]],
-                  [self.table[6], self.table[7], self.table[8]], [self.table[0], self.table[3], self.table[6]],
-                  [self.table[1], self.table[4], self.table[7]], [self.table[2], self.table[5], self.table[8]],
-                  [self.table[0], self.table[4], self.table[8]], [self.table[2], self.table[4], self.table[6]]]
-        for player in self.players:
-            win = False
-            for three in threes:
-                if player.sign == three[0] and player.sign == three[1] and player.sign == three[2]:
-                    win = True
-                if win:
-                    player.win = True
-                    break
+    @staticmethod
+    def win_checker(table, player):
+        threes = [[table[0], table[1], table[2]], [table[3], table[4], table[5]],
+                  [table[6], table[7], table[8]], [table[0], table[3], table[6]],
+                  [table[1], table[4], table[7]], [table[2], table[5], table[8]],
+                  [table[0], table[4], table[8]], [table[2], table[4], table[6]]]
+        for three in threes:
+            if player.sign == three[0] and player.sign == three[1] and player.sign == three[2]:
+                player.win = True
+                return True
 
     def game_starter(self):
 
@@ -115,21 +152,22 @@ class Game:
             else:
                 options = choice.split()
                 for option in options:
-                    if option not in ['start', 'user', 'easy', 'medium']:
+                    if option not in ['start', 'user', 'easy', 'medium', 'hard']:
                         print("Bad parameters")
                         break
-                p1 = Player("X") if options[1] == "user" else Computer("X", options[1])
-                p2 = Player("O") if options[2] == "user" else Computer("O", options[2])
-                self.players.extend([p1, p2])
-                self.table_printer()
-                break
+                else:
+                    p1 = Player("X") if options[1] == "user" else Computer("X", options[1], 0)
+                    p2 = Player("O") if options[2] == "user" else Computer("O", options[2], 1)
+                    self.players.extend([p1, p2])
+                    self.table_printer()
+                    break
 
     def game_on(self):
         while self.playing:
             for player in self.players:
                 player.play(self.table)
                 self.table_printer()
-                self.win_checker()
+                self.win_checker(self.table, player)
 
                 if player.win:
                     print(f"{player.sign} wins")
