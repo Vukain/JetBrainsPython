@@ -61,3 +61,28 @@ A text based browser which displays scraped page content using requests, Beautif
 To-Do List
 
 A To-Do list that uses SQLAlchemy combined with SQLite, to store and manage the entered tasks.
+
+---
+
+Smart Calculator
+
+xxx
+
+---
+
+Tic Tac Toe
+
+xxx
+
+---
+
+Password Hacker
+
+xxx
+
+---
+
+# Challenging
+
+HyperNews Portal
+
