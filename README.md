@@ -66,19 +66,20 @@ A To-Do list that uses SQLAlchemy combined with SQLite, to store and manage the 
 
 Smart Calculator
 
-xxx
+A calculator that makes computations in proper order. 
 
 ---
 
-Tic Tac Toe
+Tic Tac Toe with AI
 
-xxx
+A Tic Tac Toe game with the possibility to play vs AI. 
+Three different difficulty modes available - easy (random choices), medium (opportunistic choices) and hard (minimax algoritm). 
 
 ---
 
 Password Hacker
 
-xxx
+
 
 ---
 
@@ -86,3 +87,4 @@ xxx
 
 HyperNews Portal
 
+Django... 
