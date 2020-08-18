@@ -79,7 +79,7 @@ Three different difficulty modes available - easy (random choices), medium (oppo
 
 Password Hacker
 
-
+An app using socket to connect, send and receive data and json to store the data. Different password cracking techniques available - brute force, alterating letter size from password list, login and password cracking using response content/delay.  
 
 ---
 
