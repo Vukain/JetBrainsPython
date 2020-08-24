@@ -61,3 +61,30 @@ A text based browser which displays scraped page content using requests, Beautif
 To-Do List
 
 A To-Do list that uses SQLAlchemy combined with SQLite, to store and manage the entered tasks.
+
+---
+
+Smart Calculator
+
+A calculator that makes computations in proper order. 
+
+---
+
+Tic Tac Toe with AI
+
+A Tic Tac Toe game with the possibility to play vs AI. 
+Three different difficulty modes available - easy (random choices), medium (opportunistic choices) and hard (minimax algoritm). 
+
+---
+
+Password Hacker
+
+An app using socket to connect, send and receive data and json to store the data. Different password cracking techniques available - brute force, alterating letter size from password list, login and password cracking using response content/delay.  
+
+---
+
+# Challenging
+
+HyperNews Portal
+
+Django... 
