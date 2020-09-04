@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HyperJob Home</title>
+</head>
+<body>
+{% if user.is_staff %}
+<form method="post" action="vacancies/new">
+    {% csrf_token %}
+        <table>
+        <tr>
+            <td>{{ vacancy.description.label_tag }}</td>
+            <td>{{ vacancy.description }}</td>
+        </tr>
+        </table>
+
+        <input type="submit" value="add vacancy" />
+        </form>
+{% endif %}
+
+{% if user.is_authenticated %}
+<form method="post" action="resumes/new">
+    {% csrf_token %}
+        <table>
+        <tr>
+            <td>{{ resume.description.label_tag }}</td>
+            <td>{{ resume.description }}</td>
+        </tr>
+        </table>
+
+        <input type="submit" value="add resume" />
+        </form>
+{% endif %}
+</body>
+</html>
