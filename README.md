@@ -21,6 +21,12 @@ Hangman
 
 Try to guess a word... win or be hanged.
 
+---
+
+RegexEngine
+
+A app recreating how regular expressions work.
+
 # Medium
 
 Rock Paper Scissors
@@ -73,7 +79,7 @@ A calculator that makes computations in proper order.
 Tic Tac Toe with AI
 
 A Tic Tac Toe game with the possibility to play vs AI. 
-Three different difficulty modes available - easy (random choices), medium (opportunistic choices) and hard (minimax algoritm). 
+Three different difficulty modes available - easy (random choices), medium (opportunistic choices) and hard (minimax algorithm). 
 
 ---
 
@@ -87,4 +93,16 @@ An app using socket to connect, send and receive data and json to store the data
 
 HyperNews Portal
 
-Django... 
+A news portal that allows to create, index and search for news. Made with Django, data is stored via JSON.
+
+---
+
+HyperJob Agency
+
+A portal that allows to create and view resumes or vacancies (depending on user type - staff, candidate). Made with Django, data is stored via SQLite3.
+
+---
+
+HyperCar Service Center
+
+A car service site that allows to create new tickets for services, enqueue and manage them. Made with Django, data is stored via SQLite3.
