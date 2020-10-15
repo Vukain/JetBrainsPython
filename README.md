@@ -60,7 +60,7 @@ Nnnnnice.
 
 Text Based Browser
 
-A text based browser which displays scraped page content using requests, BeautifulSoup and colorama.
+A text based browser which displays scraped page content using Requests, BeautifulSoup and Colorama.
  
 ---
 
@@ -85,9 +85,13 @@ Three different difficulty modes available - easy (random choices), medium (oppo
 
 Password Hacker
 
-An app using socket to connect, send and receive data and json to store the data. Different password cracking techniques available - brute force, alternating letter size from password list, login and password cracking using server response content/delay.  
+An app using Socket to connect, send and receive data and JSON to store the data. Different password cracking techniques available - brute force, alternating letter size from password list, login and password cracking using server response content/delay.  
 
 ---
+
+Multilingual Online Translator
+
+A translator using Requests and BeautifulSoup with Reverso as a source. It supports translating to one or all available languages at the same time, can be executed with cmd line arguments.
 
 # Challenging
 
