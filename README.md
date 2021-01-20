@@ -1,5 +1,5 @@
 # JetBrains Python Academy
-Projects from JetBrains/Hyperskill Academy
+Projects (tasks) from JetBrains/Hyperskill Academy
 
 # Easy
 
