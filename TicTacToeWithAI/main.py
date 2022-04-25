@@ -118,9 +118,15 @@ class Player:
     def play(self, table):
         while True:
             coordinate = 0
-            numbs = input("Enter the coordinates (column row): ").split()
+            numbs = input("Enter the coordinates (column row): ")
 
-            if not numbs[0].isnumeric() or not numbs[1].isnumeric():
+            if " " not in numbs:
+                print("Bad format, You shold enter 'X Y'")
+                continue
+            else:
+                numbs = numbs.split()
+          
+            if (not numbs[0].isnumeric()) or (not numbs[1].isnumeric()):
                 print("You should enter numbers!")
                 continue
             elif numbs[0] not in "123" or numbs[1] not in "123":
@@ -139,6 +145,8 @@ class Player:
             else:
                 print("This cell is occupied! Choose another one!")
                 continue
+
+            print('ouch')
 
 
 class Game:
