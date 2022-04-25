@@ -118,7 +118,7 @@ class Player:
     def play(self, table):
         while True:
             coordinate = 0
-            numbs = input("Enter the coordinates: ").split()
+            numbs = input("Enter the coordinates (column row): ").split()
 
             if not numbs[0].isnumeric() or not numbs[1].isnumeric():
                 print("You should enter numbers!")
@@ -151,9 +151,9 @@ class Game:
 
     def table_printer(self):
         print(f"""---------
-| {self.table[0]} {self.table[1]} {self.table[2]} |
-| {self.table[3]} {self.table[4]} {self.table[5]} |
 | {self.table[6]} {self.table[7]} {self.table[8]} |
+| {self.table[3]} {self.table[4]} {self.table[5]} |
+| {self.table[0]} {self.table[1]} {self.table[2]} |
 ---------""")
 
     @staticmethod
