@@ -1,7 +1,7 @@
 # JetBrains Python Academy
 Projects (tasks) from JetBrains/Hyperskill Academy
 
-# Easy
+## Easy
 
 Credit Calculator
 
@@ -27,7 +27,7 @@ RegexEngine
 
 A app recreating how regular expressions work.
 
-# Medium
+## Medium
 
 Rock Paper Scissors
 
@@ -56,7 +56,7 @@ A calculator in which you can operate on matrices.
 Options: scalar multiplication, matrix addition, matrix multiplication, transposing, calculating determinant, creating an inverse matrix. 
 Nnnnnice.
 
-# Hard
+## Hard
 
 Text Based Browser
 
@@ -93,7 +93,7 @@ Multilingual Online Translator
 
 A translator using Requests and BeautifulSoup with Reverso as a source. It supports translating to one or all available languages at the same time, can be executed with cmd line arguments.
 
-# Challenging
+## Challenging
 
 HyperNews Portal
 
