@@ -38,7 +38,7 @@ A game of rock, paper, scissors, lizard, spock..
 
 Coffee Machine
 
-A coffe machine simulation in which you can order different types of coffee, 
+A coffee machine simulation in which you can order different types of coffee, 
 refill the stock or take the money... if you're the owner obviously.
  
 ---
